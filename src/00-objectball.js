@@ -114,3 +114,66 @@ function gameObject(){
     },
     }
 }
+const game=gameObject();
+console.log(gameObject());
+function homeTeamName() {
+    return game.home.teamName;
+}
+console.log(homeTeamName());
+
+function playerStats(playerName) {
+    for (let team of Object.values(game)) {
+        if (playerName in team.players) return team.players[playerName];
+    }
+    return null; 
+}
+console.log(playerStats("Ben Gordon"));
+
+
+function numPointsScored(playerName) {
+    for (let team of Object.values(game)) {
+        if (playerName in team.players) {
+            return team.players[playerName].points;
+        }
+    }
+    return null;
+}
+console.log(numPointsScored("Jason Terry"));
+
+
+function shoeSize(playerName) {
+    for (let team of Object.values(game)) {
+        if (playerName in team.players) {
+            return team.players[playerName].shoe;
+        }
+    }
+    return null;
+}
+console.log(shoeSize("Brook Lopez"));
+
+function teamColors(teamName) {
+    for (let team of Object.values(game)) {
+        if (team.teamName === teamName) {
+            return team.colors;
+        }
+    }
+    return null;
+}
+console.log(teamColors("Charlotte Hornets"));
+
+
+function playerWithBiggestShoe() {
+    let largestShoePlayer = null;
+    let maxShoeSize = 0;
+
+    for (let team of Object.values(game)) {
+        for (let [player, stats] of Object.entries(team.players)) {
+            if (stats.shoe > maxShoeSize) {
+                maxShoeSize = stats.shoe;
+                largestShoePlayer = player;
+            }
+        }
+    }
+    return largestShoePlayer;
+}
+console.log(playerWithBiggestShoe());
